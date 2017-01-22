@@ -12,35 +12,35 @@ const app = new Vue({
     champList: [
       new Post(
         'Aatrox', 
-        '/assets/images/Aatrox.png'
+        'assets/images/Aatrox.png'
       ),
       new Post(
         'Ahri', 
-        '/assets/images/Ahri.png'
+        'assets/images/Ahri.png'
       ),
       new Post(
         'Akali', 
-        '/assets/images/Akali.png'
+        'assets/images/Akali.png'
       ),
       new Post(
         'Amumu', 
-        '/assets/images/Amumu.png'
+        'assets/images/Amumu.png'
       ),
       new Post(
         'Anivia', 
-        '/assets/images/Anivia.png'
+        'assets/images/Anivia.png'
       ),
       new Post(
         'Annie', 
-        '/assets/images/Annie.png'
+        'assets/images/Annie.png'
       ),
       new Post(
         'Ashe', 
-        '/assets/images/Ashe.png'
+        'assets/images/Ashe.png'
       ),
       new Post(
         'Blitzcrank', 
-        '/assets/images/Blitzcrank.png'
+        'assets/images/Blitzcrank.png'
       ),
       new Post(
         'Brand',
