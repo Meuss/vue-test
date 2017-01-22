@@ -1,3 +1,72 @@
+$(function(){
+  var API_KEY = "705ff8f8-cfe0-4faa-87a5-2fac4227436b";
+
+  $('#getchamps').click(function() {
+    getChampions();
+  });
+
+  function getChampions(){
+    // =====================================================
+    // Ajax call: Get champion tags
+    // =====================================================
+    $.ajax({
+      url: 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=tags&api_key=' + API_KEY,
+      type: 'GET',
+      dataType: 'json',
+      data: {
+
+      },
+      success: function (resp) {
+        console.log('json call worked');
+        var response = JSON.stringify(resp, null, 2);
+
+        var htmlText = '';
+        $.each(resp.data, function(index, champion) {
+          htmlText += '<div class="champ-container ' + champion.key + ' card">';
+          htmlText += '<a href="javascript:void(0);">'
+          htmlText += '<p class="c-name">' + champion.name + '</p>';
+          htmlText += '<p class="c-title">' + champion.title + '</p>';
+          htmlText += '<p class="c-tags">' + champion.tags + '</p>';
+          htmlText += '</a>';
+          htmlText += '</div>';
+        });
+
+        $('#response').append(htmlText);
+
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log("error getting Summoner data!");
+      }
+    });
+    // =====================================================
+    // Ajax call: Get champion images
+    // =====================================================
+    $.ajax({
+      url: 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=image&api_key=' + API_KEY,
+      type: 'GET',
+      dataType: 'json',
+      data: {
+
+      },
+      success: function (resp) {
+        console.log('json call 2 worked');
+        var response = JSON.stringify(resp, null, 2);
+        $.each(resp.data, function(index, champion) {
+          var insertimg = $('.champ-container.' + champion.key + ' .c-name');
+          $('<img class="champimg" src="http://ddragon.leagueoflegends.com/cdn/5.23.1/img/champion/' + champion.key + '.png">').insertAfter(insertimg);
+          ;
+        });
+
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log("error getting Summoner data!");
+      }
+    });
+    $('button').attr('disabled', 'disabled');
+  }
+
+});
+
 class Post {
   constructor(title, img) {
     this.title = title;
@@ -12,378 +81,370 @@ const app = new Vue({
     champList: [
       new Post(
         'Aatrox', 
-        'assets/images/Aatrox.png'
+        'assets/images/small/Aatrox.jpg'
       ),
       new Post(
         'Ahri', 
-        'assets/images/Ahri.png'
+        'assets/images/small/Ahri.jpg'
       ),
       new Post(
         'Akali', 
-        'assets/images/Akali.png'
+        'assets/images/small/Akali.jpg'
       ),
       new Post(
         'Amumu', 
-        'assets/images/Amumu.png'
+        'assets/images/small/Amumu.jpg'
       ),
       new Post(
         'Anivia', 
-        'assets/images/Anivia.png'
+        'assets/images/small/Anivia.jpg'
       ),
       new Post(
         'Annie', 
-        'assets/images/Annie.png'
+        'assets/images/small/Annie.jpg'
       ),
       new Post(
         'Ashe', 
-        'assets/images/Ashe.png'
+        'assets/images/small/Ashe.jpg'
       ),
       new Post(
         'Blitzcrank', 
-        'assets/images/Blitzcrank.png'
+        'assets/images/small/Blitzcrank.jpg'
       ),
       new Post(
         'Brand',
-        'assets/images/Brand.png'
+        'assets/images/small/Brand.jpg'
       ),
       new Post(
         'Caitlyn',
-        'assets/images/Caitlyn.png'
+        'assets/images/small/Caitlyn.jpg'
       ),
       new Post(
         'Cassiopeia',
-        'assets/images/Cassiopeia.png'
+        'assets/images/small/Cassiopeia.jpg'
       ),
       new Post(
         'Darius',
-        'assets/images/Darius.png'
+        'assets/images/small/Darius.jpg'
       ),
       new Post(
         'Dr Mundo',
-        'assets/images/Dr_Mundo.png'
+        'assets/images/small/Dr_Mundo.jpg'
       ),
       new Post(
         'Draven',
-        'assets/images/Draven.png'
+        'assets/images/small/Draven.jpg'
       ),
       new Post(
         'Elise',
-        'assets/images/Elise.png'
+        'assets/images/small/Elise.jpg'
       ),
       new Post(
         'Ezreal',
-        'assets/images/Ezreal.png'
+        'assets/images/small/Ezreal.jpg'
       ),
       new Post(
         'Fiddlesticks',
-        'assets/images/Fiddlestick.png'
+        'assets/images/small/Fiddlestick.jpg'
       ),
       new Post(
         'Fiora',
-        'assets/images/Fiora.png'
+        'assets/images/small/Fiora.jpg'
       ),
       new Post(
         'Fizz',
-        'assets/images/Fizz.png'
+        'assets/images/small/Fizz.jpg'
       ),
       new Post(
         'Galio',
-        'assets/images/Galio.png'
-      ),
-      new Post(
-        'Garen',
-        'assets/images/Garen.png'
+        'assets/images/small/Galio.jpg'
       ),
       new Post(
         'Gragas',
-        'assets/images/Gragas.png'
+        'assets/images/small/Gragas.jpg'
       ),
       new Post(
         'Hecarim',
-        'assets/images/Hecarim.png'
+        'assets/images/small/Hecarim.jpg'
       ),
       new Post(
         'Irelia',
-        'assets/images/Irelia.png'
+        'assets/images/small/Irelia.jpg'
       ),
       new Post(
         'Janna',
-        'assets/images/Janna.png'
+        'assets/images/small/Janna.jpg'
       ),
       new Post(
         'Jarvan IV',
-        'assets/images/Jarvan.png'
+        'assets/images/small/Jarvan.jpg'
       ),
       new Post(
         'Jax',
-        'assets/images/Jax.png'
+        'assets/images/small/Jax.jpg'
       ),
       new Post(
         'Jayce',
-        'assets/images/Jayce.png'
+        'assets/images/small/Jayce.jpg'
       ),
       new Post(
         'Karma',
-        'assets/images/Karma.png'
-      ),
-      new Post(
-        'Kassadin',
-        'assets/images/Kassadin.png'
+        'assets/images/small/Karma.jpg'
       ),
       new Post(
         'Katarina',
-        'assets/images/Katarina.png'
+        'assets/images/small/Katarina.jpg'
       ),
       new Post(
         'Kayle',
-        'assets/images/Kayle.png'
+        'assets/images/small/Kayle.jpg'
       ),
       new Post(
         'Kha\'zix',
-        'assets/images/Khazix.png'
+        'assets/images/small/Khazix.jpg'
       ),
       new Post(
         'Kog\'maw',
-        'assets/images/Kogmaw.png'
+        'assets/images/small/Kogmaw.jpg'
       ),
       new Post(
         'Lee Sin',
-        'assets/images/Lee_sin.png'
+        'assets/images/small/Lee_sin.jpg'
       ),
       new Post(
         'Leona',
-        'assets/images/Leona.png'
+        'assets/images/small/Leona.jpg'
       ),
       new Post(
         'Lissandra',
-        'assets/images/Lissandra.png'
+        'assets/images/small/Lissandra.jpg'
       ),
       new Post(
         'Lucian',
-        'assets/images/Lucian.png'
+        'assets/images/small/Lucian.jpg'
       ),
       new Post(
         'Lulu',
-        'assets/images/Lulu.png'
+        'assets/images/small/Lulu.jpg'
       ),
       new Post(
         'Lux',
-        'assets/images/Lux.png'
+        'assets/images/small/Lux.jpg'
       ),
       new Post(
         'Malphite',
-        'assets/images/Malphite.png'
+        'assets/images/small/Malphite.jpg'
       ),
       new Post(
         'Maokai',
-        'assets/images/Maokai.png'
+        'assets/images/small/Maokai.jpg'
       ),
       new Post(
         'Master Yi',
-        'assets/images/Master_Yi.png'
+        'assets/images/small/Master_Yi.jpg'
       ),
       new Post(
         'Miss Fortune',
-        'assets/images/Miss_Fortune.png'
+        'assets/images/small/Miss_Fortune.jpg'
       ),
       new Post(
         'Mordekaiser',
-        'assets/images/Mordekaiser.png'
+        'assets/images/small/Mordekaiser.jpg'
       ),
       new Post(
         'Morgana',
-        'assets/images/Morgana.png'
+        'assets/images/small/Morgana.jpg'
       ),
       new Post(
         'Nami',
-        'assets/images/Nami.png'
+        'assets/images/small/Nami.jpg'
       ),
       new Post(
         'Nasus',
-        'assets/images/Nasus.png'
+        'assets/images/small/Nasus.jpg'
       ),
       new Post(
         'Nidalee',
-        'assets/images/Nidalee.png'
+        'assets/images/small/Nidalee.jpg'
       ),
       new Post(
         'Nocturne',
-        'assets/images/Nocturne.png'
+        'assets/images/small/Nocturne.jpg'
       ),
       new Post(
         'Nunu',
-        'assets/images/Nunu.png'
+        'assets/images/small/Nunu.jpg'
       ),
       new Post(
         'Olaf',
-        'assets/images/Olaf.png'
+        'assets/images/small/Olaf.jpg'
       ),
       new Post(
         'Orianna',
-        'assets/images/Orianna.png'
+        'assets/images/small/Orianna.jpg'
       ),
       new Post(
         'Quinn',
-        'assets/images/Quinn.png'
+        'assets/images/small/Quinn.jpg'
       ),
       new Post(
         'Rammus',
-        'assets/images/Rammus.png'
+        'assets/images/small/Rammus.jpg'
       ),
       new Post(
         'Renekton',
-        'assets/images/Renekton.png'
+        'assets/images/small/Renekton.jpg'
       ),
       new Post(
         'Rengar',
-        'assets/images/Rengar.png'
+        'assets/images/small/Rengar.jpg'
       ),new Post(
         'Riven',
-        'assets/images/Riven.png'
+        'assets/images/small/Riven.jpg'
       ),
       new Post(
         'Ryze',
-        'assets/images/Ryze.png'
+        'assets/images/small/Ryze.jpg'
       ),
       new Post(
         'Sejuani',
-        'assets/images/Sejuani.png'
+        'assets/images/small/Sejuani.jpg'
       ),
       new Post(
         'Shaco',
-        'assets/images/Shaco.png'
+        'assets/images/small/Shaco.jpg'
       ),
       new Post(
         'Shen',
-        'assets/images/Shen.png'
+        'assets/images/small/Shen.jpg'
       ),
       new Post(
         'Shyvana',
-        'assets/images/Shyvana.png'
+        'assets/images/small/Shyvana.jpg'
       ),
       new Post(
         'Singed',
-        'assets/images/Singed.png'
+        'assets/images/small/Singed.jpg'
       ),
       new Post(
         'Sion',
-        'assets/images/Sion.png'
+        'assets/images/small/Sion.jpg'
       ),
       new Post(
         'Skarner',
-        'assets/images/Skarner.png'
+        'assets/images/small/Skarner.jpg'
       ),
       new Post(
         'Sona',
-        'assets/images/Sona.png'
+        'assets/images/small/Sona.jpg'
       ),
       new Post(
         'Soraka',
-        'assets/images/Soraka.png'
+        'assets/images/small/Soraka.jpg'
       ),
       new Post(
         'Swain',
-        'assets/images/Swain.png'
+        'assets/images/small/Swain.jpg'
       ),
       new Post(
         'Syndra',
-        'assets/images/Syndra.png'
+        'assets/images/small/Syndra.jpg'
       ),
       new Post(
         'Talon',
-        'assets/images/Talon.png'
+        'assets/images/small/Talon.jpg'
       ),
       new Post(
         'Taric',
-        'assets/images/Taric.png'
+        'assets/images/small/Taric.jpg'
       ),
       new Post(
         'Teemo',
-        'assets/images/Teemo.png'
+        'assets/images/small/Teemo.jpg'
       ),
       new Post(
         'Thresh',
-        'assets/images/Thresh.png'
+        'assets/images/small/Thresh.jpg'
       ),
       new Post(
         'Tristana',
-        'assets/images/Tristana.png'
+        'assets/images/small/Tristana.jpg'
       ),
       new Post(
         'Tryndamere',
-        'assets/images/Tryndamere.png'
+        'assets/images/small/Tryndamere.jpg'
       ),
       new Post(
         'Twisted Fate',
-        'assets/images/Twisted.png'
+        'assets/images/small/Twisted.jpg'
       ),
       new Post(
         'Twitch',
-        'assets/images/Twitch.png'
+        'assets/images/small/Twitch.jpg'
       ),
       new Post(
         'Udyr',
-        'assets/images/Udyr.png'
+        'assets/images/small/Udyr.jpg'
       ),
       new Post(
         'Varus',
-        'assets/images/Varus.png'
+        'assets/images/small/Varus.jpg'
       ),
       new Post(
         'Vayne',
-        'assets/images/Vayne.png'
+        'assets/images/small/Vayne.jpg'
       ),
       new Post(
         'Veigar',
-        'assets/images/Veigar.png'
+        'assets/images/small/Veigar.jpg'
       ),
       new Post(
         'Vi',
-        'assets/images/Vi.png'
+        'assets/images/small/Vi.jpg'
       ),
       new Post(
         'Viktor',
-        'assets/images/Viktor.png'
+        'assets/images/small/Viktor.jpg'
       ),
       new Post(
         'Vladimir',
-        'assets/images/Vladimir.png'
+        'assets/images/small/Vladimir.jpg'
       ),
       new Post(
         'Volibear',
-        'assets/images/Volibear.png'
+        'assets/images/small/Volibear.jpg'
       ),
       new Post(
         'Warwick',
-        'assets/images/Warwick.png'
+        'assets/images/small/Warwick.jpg'
       ),
       new Post(
         'Wukong',
-        'assets/images/Wukong.png'
+        'assets/images/small/Wukong.jpg'
       ),
       new Post(
         'Xerath',
-        'assets/images/Xerath.png'
+        'assets/images/small/Xerath.jpg'
       ),
       new Post(
         'Xin Zhao',
-        'assets/images/Xin_Zhao.png'
+        'assets/images/small/Xin_Zhao.jpg'
       ),
       new Post(
         'Yorick',
-        'assets/images/Yorick.png'
+        'assets/images/small/Yorick.jpg'
       ),
       new Post(
         'Zac',
-        'assets/images/Zac.png'
+        'assets/images/small/Zac.jpg'
       ),
       new Post(
         'Zed',
-        'assets/images/Zed.png'
+        'assets/images/small/Zed.jpg'
       ),
       new Post(
         'Ziggs',
-        'assets/images/Ziggs.png'
+        'assets/images/small/Ziggs.jpg'
       ),
     ]
   },

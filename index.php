@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="assets/min/style.css">
     <img src="assets/League_of_legends_logo_transparent.png" class="logo" alt="">
     <div id="app">
+      <button id="getchamps">Get champ data from Riot Api</button>
+      <div id="response"></div>
+      <hr>
+      <h1>This is static data, with vue</h1>
       <div class="search-wrapper">
         <input type="text" v-model="keyword" placeholder="Search..">
         <label>Search:</label>
@@ -25,6 +29,7 @@
     </div>
   </head>
   <body>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.9/vue.min.js"></script>
   <script src="assets/min/script.js"></script>
   </body>
