@@ -1,7 +1,7 @@
 $(function(){
   var API_KEY = "705ff8f8-cfe0-4faa-87a5-2fac4227436b";
 
-  $('#getchamps').click(function() {
+  $('#getchamps').one("click", function() {
     getChampions();
   });
   function getChampions(){
@@ -17,6 +17,7 @@ $(function(){
       },
       success: function (resp) {
         console.log('json call worked');
+        $('button').attr('disabled', 'disabled');
         var response = JSON.stringify(resp, null, 2);
 
         var htmlSearch = '<h1>This is response body from Riot</h1>';
@@ -42,7 +43,6 @@ $(function(){
         $('#app2').append(htmlText);
   
         getImages();
-        $('button').attr('disabled', 'disabled');
 
         $( ".champ-container" ).bind( "click", function() {
           // console.log($(this).data("champion"));
