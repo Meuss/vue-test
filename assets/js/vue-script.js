@@ -377,11 +377,34 @@ const app = new Vue({
         'Ziggs',
         'assets/images/small/Ziggs.jpg'
       ),
+    ],
+    champListAPI: [
     ]
   },
   computed: {
     filteredList() {
       return this.champList.filter((post) => {
+        return post.title.toLowerCase().includes(this.keyword.toLowerCase());
+      });
+    },
+    filteredListAPI() {
+      return this.champListAPI.filter((post) => {
+        return post.title.toLowerCase().includes(this.keyword.toLowerCase());
+      });
+    }
+  }
+});
+
+const app2 = new Vue({
+  el: '#app2',
+  data: {
+    keyword: '',
+    champListAPI: [
+    ]
+  },
+  computed: {
+    filteredListAPI() {
+      return this.champListAPI.filter((post) => {
         return post.title.toLowerCase().includes(this.keyword.toLowerCase());
       });
     }

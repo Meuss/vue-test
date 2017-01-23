@@ -9,11 +9,17 @@
     <link href="https://fonts.googleapis.com/css?family=Arsenal" rel="stylesheet">
     <link rel="stylesheet" href="assets/min/style.css">
     <img src="assets/League_of_legends_logo_transparent.png" class="logo" alt="">
-    <div id="app">
+    <div id="app2">
+    <div class="winrate-wrapper">
+      <div id="winrate">
+        
+      </div>
+    </div>
       <button id="getchamps">Get champ data from Riot Api</button>
-      <div id="response"></div>
-      <hr>
-      <h1>This is static data, with vue</h1>
+    </div>
+    <div class="separator"></div>
+    <div id="app">
+      <h1>This is static data, with Vue computed search filter</h1>
       <div class="search-wrapper">
         <input type="text" v-model="keyword" placeholder="Search..">
         <label>Search:</label>
