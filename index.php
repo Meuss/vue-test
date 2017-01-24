@@ -8,6 +8,8 @@
     <title>Riot-Champion.gg API</title>
     <link href="https://fonts.googleapis.com/css?family=Arsenal" rel="stylesheet">
     <link rel="stylesheet" href="assets/min/style.css">
+  </head>
+  <body class="loading">
     <img src="assets/images/League_of_legends_logo_transparent.png" class="logo" alt="">
     <div id="app2">
       <div class="winrate-wrapper">
@@ -32,8 +34,6 @@
         </div>
       </div>
     </div>
-  </head>
-  <body class="loading">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.9/vue.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.1/TweenMax.min.js"></script>
