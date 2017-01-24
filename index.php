@@ -5,17 +5,16 @@
     <meta name="description" content="just testing out vue js">
     <meta name="keywords" content="vue js">
     <link rel="author" content="Thomas Miller" />
-    <title>Testing Vue.js</title>
+    <title>Riot-Champion.gg API</title>
     <link href="https://fonts.googleapis.com/css?family=Arsenal" rel="stylesheet">
     <link rel="stylesheet" href="assets/min/style.css">
-    <img src="assets/League_of_legends_logo_transparent.png" class="logo" alt="">
+    <img src="assets/images/League_of_legends_logo_transparent.png" class="logo" alt="">
     <div id="app2">
-    <div class="winrate-wrapper">
-      <div id="winrate">
-        
+      <div class="winrate-wrapper">
+        <div id="winrate"></div>
       </div>
-    </div>
-      <button id="getchamps">Get champ data from Riot Api</button>
+      <div class="title-wrapper"></div>
+      <div class="wrapper"></div>
     </div>
     <div class="separator"></div>
     <div id="app">
