@@ -1,6 +1,6 @@
 $(function(){
   const RIOT_API_KEY = "705ff8f8-cfe0-4faa-87a5-2fac4227436b";
-
+  
   // =====================================================
   // Get champion tags
   // =====================================================
@@ -11,7 +11,7 @@ $(function(){
     let championObjects = resp.data; // get the data
     // create title
     let title = createNode('h1');
-    title.innerHTML = 'This is response body from Riot';
+    title.innerHTML = 'Fetch calls to Riot and champion.gg APIs ';
     let appContainer = document.querySelector('.title-wrapper');
     append(appContainer, title);
     // create the champion elements
@@ -47,7 +47,7 @@ $(function(){
 
     getImages();
     enableWinrate();
-
+    TweenMax.staggerFrom('.champ-container', 0, { y: 70, opacity: 0, ease: Power4.easeIn, force3D: true }, 0.04);
   })
   .catch(function(error) {
     console.log('Failed to get tags: '+ error);
