@@ -12,7 +12,7 @@
   <body class="loading">
     <img src="assets/images/League_of_legends_logo_transparent.png" class="logo" alt="">
     <div id="app-summoner-info">
-      <input type="text" placeholder="Summoner Name">
+      <input id="summoner-input" type="text" placeholder="Summoner Name">
       <button id="get-summoner">Get Summoner infos</button>
     </div>
     <div id="app2">
@@ -39,9 +39,7 @@
         </div>
       </div>
     </div>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.9/vue.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.1/TweenMax.min.js"></script>
-  <script src="assets/min/script.js"></script>
+  <script src="_build/bundle.js"></script>
   </body>
 </html>
