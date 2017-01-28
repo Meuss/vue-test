@@ -1,0 +1,115 @@
+.winrate-wrapper {
+  position: absolute;
+  left: 10%;
+  top: 0px;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+  &.winrate-showing {
+    opacity: 1;
+  }
+  h2 {
+    margin: 0;
+    display: inline-block;
+    font-size: 25px;
+  }
+  #winrate {
+    display: inline-block;
+    font-size: 25px;
+  }
+}
+#app2 {
+  position: relative;
+  .champ-container {
+    // min-width: 130px;
+    border: 1px solid rgba(0,0,0,0.2);
+    margin: 1px!important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 7px;
+    a {
+      padding: 0px!important;
+    }
+    .c-name {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      top: 50%;
+      padding: 5px 0px;
+      transform: translateY(-50%);
+      width: 100%;
+      text-align: center;
+      background-color: rgba(0,0,0,0.8);
+      position: absolute;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+      z-index: 1;
+      font-size: 18px;
+    }
+    .champimg {
+      width: 120px;
+      height: 120px;
+      background-color: rgba(0,0,0,0.8);
+      transition: opacity 0.2s ease-out;
+    }
+    .overlay {
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      left: 0px;
+      background-color: black;
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+      z-index: -1;
+    }
+    .c-title {
+      position: absolute;
+      bottom: 25px;
+      left: -30px;
+      color: white;
+      font-size: 11px;
+      margin: 0px;
+      opacity: 0;
+      z-index: 1;
+      transition: all 0.2s ease-out;
+    }
+    .c-tags {
+      position: absolute;
+      bottom: 10px;
+      right: -30px;
+      color: white;
+      font-size: 11px;
+      margin: 0px;
+      opacity: 0;
+      transition: all 0.2s ease-out;
+      z-index: 1;
+    }
+    &:hover {
+      .c-name {
+        opacity: 1;
+      }
+      .champimg {
+        opacity: 0.5;
+      }
+      .overlay {
+        opacity: 1;
+      }
+      .c-title{
+        opacity: 1;
+        left: 10px;
+      }
+      .c-tags {
+        opacity: 1;
+        right: 10px;
+      }
+    }
+  }
+
+}
+.separator {
+  background-color: rgba(0,0,0,0.5);
+  display: inline-block;
+  width: 80%;
+  height: 1px;
+  margin: 60px auto;
+}

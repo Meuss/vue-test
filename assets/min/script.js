@@ -3,61 +3,48 @@
 /* global TweenMax, Power4*/
 $(function () {
   var RIOT_API_KEY = '705ff8f8-cfe0-4faa-87a5-2fac4227436b';
-
+  var buttonGetChampions = document.querySelector('#getchampions');
+  buttonGetChampions.addEventListener('click', getChampionGrid);
   // =====================================================
   // Get champion tags
   // =====================================================
-  var tagssurl = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=tags&api_key=' + RIOT_API_KEY;
-  fetch(tagssurl).then(function (resp) {
-    return resp.json();
-  }) // Transform the data into json
-  .then(function (resp) {
-    var championObjects = resp.data; // get the data
-    // create title
-    var title = createNode('h1');
-    title.innerHTML = 'Fetch calls to Riot and champion.gg APIs ';
-    var appContainer = document.querySelector('.title-wrapper');
-    append(appContainer, title);
-    // create the champion elements
-    for (var champion in championObjects) {
-      var champWrapper = document.querySelector('.wrapper');
-      var championKey = championObjects[champion].key;
-      var championName = championObjects[champion].name;
-      var championTitle = championObjects[champion].title;
-      var championTags = championObjects[champion].tags;
-      // create the champ-container divs
-      var champContainer = createNode('div');
-      champContainer.className = 'champ-container card ' + championKey;
-      champContainer.dataset.champion = championKey;
-      append(champWrapper, champContainer);
-      // create the inner link
-      var champLink = createNode('a');
-      champLink.href = 'javascript:void(0);';
-      append(champContainer, champLink);
-      // create the name, title, tags elements
-      var champName = createNode('p');
-      champName.className = 'c-name';
-      champName.innerHTML = championName;
-      append(champLink, champName);
-      var chamTitle = createNode('p');
-      chamTitle.className = 'c-title';
-      chamTitle.innerHTML = championTitle;
-      append(champLink, chamTitle);
-      var champTags = createNode('p');
-      champTags.className = 'c-tags';
-      champTags.innerHTML = championTags;
-      append(champLink, champTags);
-    }
+  function getChampionGrid() {
+    buttonGetChampions.disabled = true;
+    var tagssurl = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=tags&api_key=' + RIOT_API_KEY;
+    fetch(tagssurl).then(function (resp) {
+      return resp.json();
+    }) // Transform the data into json
+    .then(function (resp) {
+      var championObjects = resp.data; // get the data
+      // create title
+      var title = createNode('h1');
+      title.innerHTML = 'Fetch calls to Riot and champion.gg APIs ';
+      var appContainer = document.querySelector('.title-wrapper');
+      append(appContainer, title);
+      // create the champion elements
+      for (var champion in championObjects) {
+        // destructuring object (es6)
+        var _championObjects$cham = championObjects[champion],
+            key = _championObjects$cham.key,
+            name = _championObjects$cham.name,
+            description = _championObjects$cham.title,
+            tags = _championObjects$cham.tags;
 
-    getImages();
-    enableWinrate();
-    TweenMax.staggerFrom('.champ-container', 0, { y: 70, opacity: 0, ease: Power4.easeIn, force3D: true }, 0.04);
-  })
-  /*eslint-disable */
-  .catch(function (error) {
-    console.log('Failed to get tags: ' + error);
-  });
-  /*eslint-enable */
+        var champMarkup = '\n        <div class="champ-container card ' + key + '" data-champion="' + key + '">\n          <a href="javascript:void(0);">\n            <p class="c-name">' + name + '</p>\n            <p class="c-title">' + description + '</p>\n            <p class="c-tags">' + tags + '</p>            \n        ';
+        document.querySelector('.wrapper').innerHTML += champMarkup;
+      }
+
+      getImages();
+      enableWinrate();
+      TweenMax.staggerFrom('.champ-container', 0, { y: 70, opacity: 0, ease: Power4.easeIn, force3D: true }, 0.04);
+    })
+    /*eslint-disable */
+    .catch(function (error) {
+      console.log('Failed to get tags: ' + error);
+    });
+    /*eslint-enable */
+  }
+
   // =====================================================
   // Enable winrate click
   // =====================================================
@@ -99,20 +86,14 @@ $(function () {
     var imgsurl = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=image&api_key=' + RIOT_API_KEY;
     fetch(imgsurl).then(function (resp) {
       return resp.json();
-    }) // Transform the data into json
-    .then(function (resp) {
-      var championObjects = resp.data; // get the data
+    }).then(function (resp) {
+      var championObjects = resp.data;
       for (var champion in championObjects) {
-        // iterate through objects
-        var championKey = championObjects[champion].key; // 'Aatrox'
-        var img = createNode('img');
-        var overlay = createNode('div');
-        overlay.className = 'overlay';
-        img.className = 'champimg';
-        var imgContainer = document.querySelector('.' + championKey + ' a');
-        img.src = 'http://ddragon.leagueoflegends.com/cdn/5.23.1/img/champion/' + championKey + '.png';
-        append(imgContainer, img);
-        append(imgContainer, overlay);
+        var key = championObjects[champion].key;
+        var image = championObjects[champion].image.full;
+        var imgContainer = document.querySelector('.' + key + ' a');
+        var imageMarkup = '\n          <img class="champimg" src="http://ddragon.leagueoflegends.com/cdn/7.1.1/img/champion/' + image + '">\n          <div class="overlay"></div>\n        ';
+        document.querySelector('.' + key + ' a').innerHTML += imageMarkup;
       }
     })
     /*eslint-disable */
@@ -130,6 +111,21 @@ function createNode(element) {
 function append(parent, el) {
   return parent.appendChild(el);
 }
+'use strict';
+
+/* global require */
+(function () {
+    console.log('key: 705ff8f8-cfe0-4faa-87a5-2fac4227436b');
+    var lol = require('lol-js');
+    var lolClient = lol.client({
+        apiKey: '705ff8f8-cfe0-4faa-87a5-2fac4227436b',
+        cache: lol.redisCache({ host: '127.0.0.1', port: 6379 })
+    });
+    lolClient.getChampionById('na', 53, { champData: ['all'] }).then(function (data) {
+        console.log("Found ", data.name);
+        lolClient.destroy();
+    });
+})();
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }

@@ -11,7 +11,12 @@
   </head>
   <body class="loading">
     <img src="assets/images/League_of_legends_logo_transparent.png" class="logo" alt="">
+    <div id="app-summoner-info">
+      <input type="text" placeholder="Summoner Name">
+      <button id="get-summoner">Get Summoner infos</button>
+    </div>
     <div id="app2">
+      <button id="getchampions">Get Champions info</button>
       <div class="winrate-wrapper">
         <div id="winrate"></div>
       </div>
